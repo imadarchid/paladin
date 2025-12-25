@@ -21,7 +21,7 @@ import { generatePostReq, returnResponse } from "./common";
 import { RpcEndpoint, RpcMethods } from "./rpcMethods";
 
 export const fetchEvents = async (pageParam?: IEvent): Promise<IEvent[]> => {
-  let requestPayload: any = {
+  const requestPayload: any = {
     jsonrpc: "2.0",
     id: Date.now(),
     method: RpcMethods.bidx_QueryIndexedEvents,

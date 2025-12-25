@@ -16,7 +16,6 @@
 
 import { Button } from "@mui/material";
 import { useState } from "react";
-import { HashDialog } from "../dialogs/Hash";
 import { SmartContractDetails } from "../dialogs/SmartContractDetails";
 
 const MAX_LENGTH_WITHOUT_COLLAPSE = 16;
