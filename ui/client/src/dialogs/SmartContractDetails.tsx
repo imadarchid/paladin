@@ -1,8 +1,5 @@
-import { Box, Button, Dialog, DialogContent, IconButton, Tooltip, Typography } from "@mui/material";
-import { useState } from "react";
+import { Dialog, DialogContent } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { JSONBox } from "../components/JSONBox";
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { SingleValue } from "../components/SingleValue";
 import { queryPrivacyGroupByAddress } from "../queries/privacyGroups";
 import { useQuery } from "@tanstack/react-query";
@@ -15,8 +12,6 @@ type Props = {
   config: any;
   domain?: string;
 }
-
-
 
 export const SmartContractDetails: React.FC<Props> = ({ title, hash, dialogOpen, setDialogOpen, config, domain }) => {
 
