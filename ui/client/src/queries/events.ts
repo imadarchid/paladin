@@ -20,7 +20,7 @@ import { IEvent } from "../interfaces";
 import { generatePostReq, returnResponse } from "./common";
 import { RpcEndpoint, RpcMethods } from "./rpcMethods";
 
-export const fetchEvents = async (pageParam?: IEvent): Promise<IEvent[]> => {
+export const fetchEvents = async (pageParam?: IEvent, txHash?: string): Promise<IEvent[]> => {
   const requestPayload: any = {
     jsonrpc: "2.0",
     id: Date.now(),
@@ -70,10 +70,14 @@ export const fetchEvents = async (pageParam?: IEvent): Promise<IEvent[]> => {
     ];
   }
 
-  return <Promise<IEvent[]>>(
-    returnResponse(
-      () => fetch(RpcEndpoint, generatePostReq(JSON.stringify(requestPayload))),
-      i18next.t("errorFetchingLatestEvents")
-    )
+  let events = await returnResponse(
+    () => fetch(RpcEndpoint, generatePostReq(JSON.stringify(requestPayload))),
+    i18next.t("errorFetchingLatestEvents")
   );
+
+  if (txHash && txHash.length > 0) {
+    events = events.filter((event: IEvent) => event.transactionHash === txHash);
+  }
+
+  return events;
 };

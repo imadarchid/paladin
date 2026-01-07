@@ -29,7 +29,8 @@ import { generatePostReq, returnResponse } from './common';
 import { RpcEndpoint, RpcMethods } from './rpcMethods';
 
 export const fetchIndexedTransactions = async (
-  pageParam?: ITransaction
+  pageParam?: ITransaction,
+  txHash?: string
 ): Promise<IEnrichedTransaction[]> => {
   const requestPayload: any = {
     jsonrpc: '2.0',
@@ -80,7 +81,7 @@ export const fetchIndexedTransactions = async (
     receiptsResult
   );
 
-  const enrichedTransactions: IEnrichedTransaction[] = [];
+  let enrichedTransactions: IEnrichedTransaction[] = [];
 
   for (const transaction of transactions) {
     enrichedTransactions.push({
@@ -99,6 +100,10 @@ export const fetchIndexedTransactions = async (
             .includes(paladinTransaction.id)
       ),
     });
+  }
+
+  if (txHash && txHash.length > 0) {
+    enrichedTransactions = enrichedTransactions.filter((transaction) => transaction.hash === txHash);
   }
 
   return enrichedTransactions;

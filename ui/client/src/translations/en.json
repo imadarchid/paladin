@@ -98,6 +98,7 @@
 	"false": "False",
 	"field": "Field",
 	"filter": "Filter",
+	"filterByTransactionHash": "Filter by transaction hash",
 	"from": "From",
 	"greaterThan": "Greater than",
 	"greaterThanOrEqual": "Greater than or equal",
