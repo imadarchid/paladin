@@ -93,7 +93,7 @@ export const SmartContractsTable: React.FC<Props> = ({ domainAddress }) => {
           {contracts?.map((contract: any) => (
             <TableRow key={contract.address} sx={{ height: '70px' }}>
               <TableCell>
-                <Hash title={t('address')} hash={contract.address} config={contract.config} domain={contract.domainName} />
+                <Hash title={t('address')} hash={contract.address} config={contract.config?.contractConfig} domain={contract.domainName} />
               </TableCell>
               <TableCell>
                 <DomainButtons
